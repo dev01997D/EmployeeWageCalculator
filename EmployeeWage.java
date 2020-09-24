@@ -11,6 +11,7 @@ public class EmployeeWage {
 		//Variables
 		int empWage=0;
 		int empHours=0;
+		int monthlyWage=0;
 		
 		//Welcome statement
 		System.out.println("Welcome to Employee wage computation");
@@ -36,8 +37,11 @@ public class EmployeeWage {
 		
 		//Daily wage calculation
 		empWage=empHours*20;
+		//Monthly wage calculation
+		monthlyWage=empWage*20;
 		
 		System.out.println("Employee daily wage is :"+empWage);
+		System.out.println("Employee monthly wage is :"+monthlyWage);
 
 	}
 
