@@ -12,6 +12,8 @@ public class EmployeeWage {
 		int empWage=0;
 		int empHours=0;
 		int monthlyWage=0;
+		int dayCount=0;
+		int wage=0;
 		
 		//Welcome statement
 		System.out.println("Welcome to Employee wage computation");
@@ -23,26 +25,32 @@ public class EmployeeWage {
 		switch(empCheck) {
 		case IS_FULL_TIME:
 			System.out.println("Full time employee present");
-			empHours=8;
+			System.out.println("Days \t perDayHour \tTotal Wage");
+			int i=1;
+			while(empHours<100) {
+				if (empHours<96)
+					empHours+=8;
+				else
+					empHours+=4;
+				wage=empHours*20;
+				System.out.println(i+" \t "+empHours+" \t \t"+wage);
+				i+=1;
+			}
 			break;
 		case IS_PART_TIME:
 			System.out.println("Part time employee present");
-			empHours=4;
+			System.out.println("Days \t perDayHour \tTotal Wage");
+			while(dayCount<20) {
+				dayCount+=1;
+				empHours+=4;
+				wage=empHours*20;
+				System.out.println(dayCount+" \t "+empHours+" \t \t"+wage);
+			}
 			break;
 		default:
 			System.out.println("Employee absent");
 			empHours=0;
 			break;
 		}
-		
-		//Daily wage calculation
-		empWage=empHours*20;
-		//Monthly wage calculation
-		monthlyWage=empWage*20;
-		
-		System.out.println("Employee daily wage is :"+empWage);
-		System.out.println("Employee monthly wage is :"+monthlyWage);
-
 	}
-
 }
