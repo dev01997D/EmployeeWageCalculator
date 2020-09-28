@@ -1,6 +1,6 @@
 package com.bridgelabz.employeecheck;
 
-public class EmployeeWage{
+public class EmployeeWage implements EmployeeWageBuilder{
 	//constants
 	public static final int IS_FULL_TIME=0;
 	public static final int IS_PART_TIME=1;
@@ -16,15 +16,14 @@ public class EmployeeWage{
 		noOfCompany++;
 	}
 
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for(int i=0; i<noOfCompany; i++) {
-			compEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(compEmpWageArray[i]));
+			compEmpWageArray[i].setTotalEmpWage(this.getTotalWage(compEmpWageArray[i]));
 			System.out.println(compEmpWageArray[i]);
 			System.out.println("\n");
 		}
 	}
-
-	private int computeEmpWage(EmployeeWageComputation employeewage) {
+	public int getTotalWage(EmployeeWageComputation employeewage) {
 		//variables
 		int empHours=0, totalEmpHours=0, totalWorkingDays=0;
 		//Computation
