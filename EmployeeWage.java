@@ -1,5 +1,7 @@
 package com.bridgelabz.employeecheck;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EmployeeWage implements EmployeeWageBuilder{
 	//constants
@@ -8,13 +10,16 @@ public class EmployeeWage implements EmployeeWageBuilder{
 	//variables
 	private int noOfCompany=0;
 	private ArrayList<EmployeeWageComputation> compEmpWageArrayList;
+	private Map<String,EmployeeWageComputation> companyEmpWageMap;
 
 	public EmployeeWage() {
 		compEmpWageArrayList=new ArrayList<>();
+		companyEmpWageMap=new HashMap<>();
 	}
 	public void addCompanyEmpWage(String company, int empWagePerHour, int maxHoursAMonth, int workingDayMonth) {
 		EmployeeWageComputation newCompanyObj=new EmployeeWageComputation(company, empWagePerHour, maxHoursAMonth, workingDayMonth);
 		compEmpWageArrayList.add(newCompanyObj);
+		companyEmpWageMap.put(company, newCompanyObj);
 	}
 
 	public void computeEmpWage() {
@@ -25,6 +30,7 @@ public class EmployeeWage implements EmployeeWageBuilder{
 			System.out.println("\n");
 		}
 	}
+	
 	public int getTotalWage(EmployeeWageComputation employeewage) {
 		//variables
 		int empHours=0, totalEmpHours=0, totalWorkingDays=0;
@@ -55,6 +61,10 @@ public class EmployeeWage implements EmployeeWageBuilder{
 		}
 		return totalEmpHours*employeewage.empWagePerHour;
 	}
+	
+	public int getTotalWageForACompany(String company) {
+		return companyEmpWageMap.get(company).totalEmpwage;  //plz teach this
+	}
 	public static void main(String[] args) {
 		//Welcome statement
 		System.out.println("Welcome to Employee wage computation");
@@ -63,6 +73,8 @@ public class EmployeeWage implements EmployeeWageBuilder{
 		empWage.addCompanyEmpWage("Amazon", 18, 115, 22);
 		empWage.addCompanyEmpWage("Capgemini", 20, 100, 20);
 		empWage.computeEmpWage();
+		
+		System.out.println("Total wage for Amazon is : "+empWage.getTotalWageForACompany("Amazon"));
 	}
 
 }
