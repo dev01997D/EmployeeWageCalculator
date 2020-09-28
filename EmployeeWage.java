@@ -1,4 +1,5 @@
 package com.bridgelabz.employeecheck;
+import java.util.ArrayList;
 
 public class EmployeeWage implements EmployeeWageBuilder{
 	//constants
@@ -6,20 +7,21 @@ public class EmployeeWage implements EmployeeWageBuilder{
 	public static final int IS_PART_TIME=1;
 	//variables
 	private int noOfCompany=0;
-	private EmployeeWageComputation[] compEmpWageArray;
+	private ArrayList<EmployeeWageComputation> compEmpWageArrayList;
 
 	public EmployeeWage() {
-		compEmpWageArray=new EmployeeWageComputation[5];
+		compEmpWageArrayList=new ArrayList<>();
 	}
 	public void addCompanyEmpWage(String company, int empWagePerHour, int maxHoursAMonth, int workingDayMonth) {
-		compEmpWageArray[noOfCompany]=new EmployeeWageComputation(company, empWagePerHour, maxHoursAMonth, workingDayMonth);
-		noOfCompany++;
+		EmployeeWageComputation newCompanyObj=new EmployeeWageComputation(company, empWagePerHour, maxHoursAMonth, workingDayMonth);
+		compEmpWageArrayList.add(newCompanyObj);
 	}
 
 	public void computeEmpWage() {
-		for(int i=0; i<noOfCompany; i++) {
-			compEmpWageArray[i].setTotalEmpWage(this.getTotalWage(compEmpWageArray[i]));
-			System.out.println(compEmpWageArray[i]);
+		for(int i=0; i<compEmpWageArrayList.size(); i++) {
+			EmployeeWageComputation newCompanyObj=compEmpWageArrayList.get(i);
+			newCompanyObj.setTotalEmpWage(this.getTotalWage(newCompanyObj));
+			System.out.println(newCompanyObj);
 			System.out.println("\n");
 		}
 	}
