@@ -49,12 +49,12 @@ public class EmployeeWage implements EmployeeWageBuilder{
 			default:
 				empHours=0;
 			}
-			if (totalEmpHours<96) {
+			if ((totalEmpHours < maxHoursAMonth) && (totalEmpHours + empHours <= maxHoursAMonth)) {
 				totalEmpHours+=empHours;
 				System.out.println("Days : "+totalWorkingDays+"\tEmployee hour : "+empHours+"\tTotal hours "+totalEmpHours);
 			}
 			else {
-				totalEmpHours+=(100-totalEmpHours);
+				totalEmpHours +=maxHoursAMonth;;
 				System.out.println("Days : "+totalWorkingDays+"\tEmployee hour : "+empHours+"\tTotal hours "+totalEmpHours);
 				break;
 			}
